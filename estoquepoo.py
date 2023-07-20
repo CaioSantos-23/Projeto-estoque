@@ -136,7 +136,7 @@ class InterfaceUsuario:
 
     def verificar_estoque_individual(self):
         codigo_barras = self.entry_codigo.get()
-        produto = self.estoque.verificar_estoque(codigo_barras)
+        produto = self.estoque.verificar_estoque(codigo_barras=codigo_barras)  # Adicionamos o argumento 'codigo_barras'
         if produto:
             messagebox.showinfo("Verificar Estoque", str(produto))
         else:
