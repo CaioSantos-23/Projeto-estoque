@@ -68,18 +68,13 @@ class Estoque:
                 break
 
     def verificar_estoque(self, codigo_barras=None):
-        produtos_abaixo_minimo = []
-        for produto in self.produtos:
-            if produto.quantidade_em_estoque <= produto.quantidade_minima:
-                produtos_abaixo_minimo.append(produto)
-
         if codigo_barras:
-            for produto in produtos_abaixo_minimo:
+            for produto in self.produtos:
                 if produto.codigo_barras == codigo_barras:
                     return produto
             return None
         else:
-            return produtos_abaixo_minimo
+            return self.produtos
         
         
     def gerar_relatorio_estoque_minimo(self):
@@ -218,7 +213,7 @@ class InterfaceUsuario:
             mensagem += f"Quantidade Mínima: {produto.quantidade_minima}\n"
             mensagem += f"Entradas de Estoque: {produto.entrada_de_estoque}\n"
             mensagem += f"Saídas de Estoque: {produto.saida_de_estoque}\n"
-
+            
             if produto.quantidade_em_estoque <= produto.quantidade_minima:
                 mensagem += "\nEstoque abaixo do mínimo!"
             else:
