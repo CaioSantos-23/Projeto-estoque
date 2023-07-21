@@ -1,7 +1,12 @@
+import os
 import pandas as pd
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
+
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
 
 class Produto:
     def __init__(self, codigo_barras, quantidade_em_estoque, quantidade_minima, produto="Produto Não Especificado"):
@@ -147,7 +152,7 @@ class InterfaceUsuario:
         self.button_cadastrar = tk.Button(root, text="Cadastrar Produto", font=("Arial", 12), command=self.cadastrar_produto)
         self.button_cadastrar.pack(pady=10)
 
-        self.file_path = 'C:\\Users\\Raian Satyro\\OneDrive\\Documentos\\Dev\\python\\estoqueOggi\\Projeto-estoque\\Estoque_com_codigo_de_barras.xlsx'
+        self.file_path = os.path.join(script_dir, "Estoque_com_codigo_de_barras.xlsx")
         self.estoque = Estoque(self.file_path)
 
     
